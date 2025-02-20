@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShaheerGPT</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #e0e5ec;
+            --shadow-color: #a3b1c6;
+            --light-shadow: #ffffff;
+        }
+
+        .dark-mode {
+            --primary-color: #1a1f24;
+            --shadow-color: #131518;
+            --light-shadow: #23282d;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            padding: 2rem;
+        }
+
+        .frame-container {
+            position: relative;
+            border-radius: 20px;
+            background: var(--primary-color);
+            box-shadow: 8px 8px 16px var(--shadow-color),
+                       -8px -8px 16px var(--light-shadow);
+            padding: 20px;
+            margin-bottom: 2rem;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .frame-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 12px 12px 20px var(--shadow-color),
+                       -12px -12px 20px var(--light-shadow);
+        }
+
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary-color);
+            box-shadow: 5px 5px 10px var(--shadow-color),
+                       -5px -5px 10px var(--light-shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle i {
+            font-size: 20px;
+            color: #666;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #666;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px var(--shadow-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .frame-container {
+                padding: 10px;
+            }
+
+            iframe {
+                height: 500px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+        }
+
+        .loading-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--primary-color);
+            border-top: 5px solid #666;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+            background: linear-gradient(45deg, #f3f4f6 25%, transparent 25%),
+                        linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+                        linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            animation: backgroundMove 20s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { background-position: 0 0, 0 10px, 10px -10px, -10px 0px; }
+            100% { background-position: 20px 20px, 20px 30px, 30px 10px, 10px 20px; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="container" data-aos="fade-up">
+        <h1 class="title" data-aos="fade-down">ShaheerGPT</h1>
+        <div class="frame-container">
+            <iframe src="https://www.yeschat.ai/i/gpts-2OToXZKARI-AI-Content-Master" width="800" height="500" style="max-width: 100%;"></iframe>
+
+        </div>
+    </div>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.theme-toggle i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        }
+
+        function hideLoader() {
+            document.querySelector('.loading-animation').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
